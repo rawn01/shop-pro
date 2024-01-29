@@ -9,7 +9,9 @@
     "server": "tsc && nodemon backend/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node dist/data/seeder.js",
+    "data:delete": "node dist/data/seeder.js -d"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "mongoose": "^8.1.0"
   }
 }

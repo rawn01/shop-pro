@@ -18,7 +18,7 @@ const Ratings = (props: IProps) => {
 
   for(let i = 1; i <= maxValue; i++) {
     jsx.push(
-      <span>
+      <span key={i}>
         {value >= i ? <FaStar /> : value >= i - 0.5 ? <FaStarHalfAlt /> : <FaRegStar />}
       </span>
     );
