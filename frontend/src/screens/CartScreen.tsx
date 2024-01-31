@@ -4,12 +4,13 @@ import { Row, Col, Form, Button, Card, ListGroup, Image } from 'react-bootstrap'
 import { FaTrash } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../slices/cartSlice';
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const CartScreen = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const cart = useSelector((state: any) => state.cart);
+  const cart = useAppSelector((state) => state.cart);
   const { cartItems } = cart;
 
   const removeCartHandler = (id: any) => {
@@ -94,7 +95,7 @@ const CartScreen = () => {
         </Card>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default CartScreen;

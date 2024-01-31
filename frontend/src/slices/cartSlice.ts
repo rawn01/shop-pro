@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : { cartItems: [] };
+export interface ICartState {
+  cartItems: IProduct[];
+  itemsPrice: string;
+  shippingPrice: string;
+  taxPrice: string;
+  totalPrice: string;
+}
+
+const initialState: ICartState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : { cartItems: [] };
 
 const addDecimals = (num: number) => {
   return Math.round((num * 100) / 100).toFixed(2);
@@ -28,10 +36,10 @@ const cartSlice = createSlice({
       state.itemsPrice = addDecimals(itemsPrice);
 
       // If order over 100 then 10 shipping charge else free
-      state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
+      state.shippingPrice = addDecimals(+state.itemsPrice > 100 ? 0 : 10);
 
       // Tax Price (15% tax)
-      state.taxPrice = addDecimals(Number(0.15 * state.itemsPrice));
+      state.taxPrice = addDecimals(Number(0.15 * +state.itemsPrice));
 
       // Total Price
       state.totalPrice = Number(state.itemsPrice + state.shippingPrice + state.taxPrice).toFixed(2);
