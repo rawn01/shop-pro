@@ -2,15 +2,14 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap";
 import Ratings from '../components/Ratings';
-import axios from 'axios';
 import { useGetProductByIdQuery } from '../slices/productApiSlice';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from "../hooks";
 import { addToCart } from '../slices/cartSlice';
 
 const ProductScreen = () => {
   const { id } = useParams();
   const [qty, setQty] = useState(1);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id!);

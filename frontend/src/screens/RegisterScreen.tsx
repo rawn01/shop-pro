@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormContainer from '../components/FormContainer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from "react-toastify";
@@ -13,12 +13,12 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [register, { isLoading }] = useRegisterMutation(); 
   const { search } = useLocation();
 
-  const { userInfo } = useSelector((state: any) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const searchParams = new URLSearchParams(search);
   const redirect = searchParams.get("redirect") || "/";
 

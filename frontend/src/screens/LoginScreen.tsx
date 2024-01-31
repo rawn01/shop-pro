@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import FormContainer from '../components/FormContainer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLoginMutation, useLogoutMutation } from '../slices/usersApiSlice';
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from "react-toastify";
 
@@ -11,12 +11,12 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation(); 
   const { search } = useLocation();
 
-  const { userInfo } = useSelector((state: any) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const searchParams = new URLSearchParams(search);
   const redirect = searchParams.get("redirect") || "/";
 

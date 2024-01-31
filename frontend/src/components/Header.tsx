@@ -3,16 +3,16 @@ import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { removeCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 
 const Header = () => {
-  const { cartItems } = useSelector((state: any) => state.cart);
-  const { userInfo } = useSelector((state: any) => state.auth);
+  const { cartItems } = useAppSelector((state) => state.cart);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
 
   const logoutHandler = async (e: React.SyntheticEvent) => {

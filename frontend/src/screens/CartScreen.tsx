@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { Row, Col, Form, Button, Card, ListGroup, Image } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../slices/cartSlice';
 import { useAppDispatch, useAppSelector } from "../hooks";
 
