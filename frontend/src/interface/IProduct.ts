@@ -9,4 +9,5 @@ interface IProduct {
     countInStock: number,
     rating: number,
     numReviews: number,
+    qty?: number;
 }
