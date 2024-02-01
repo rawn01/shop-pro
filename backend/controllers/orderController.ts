@@ -20,16 +20,6 @@ export const createOrder = asyncHandler(async (req, res) => {
     throw new Error("No order items in the cart");
   }
 
-  // const order = await Order.create({
-  //   orderItems: orderItems.map((item) => ({ ...item, product: item._id })),
-  //   shippingAddress,
-  //   paymentMethod,
-  //   itemsPrice,
-  //   taxPrice,
-  //   shippingPrice,
-  //   totalPrice
-  // });
-
   const order = new Order({
     orderItems: orderItems.map((item) => ({ ...item, product: item._id })),
     user: req.user._id,
@@ -40,7 +30,6 @@ export const createOrder = asyncHandler(async (req, res) => {
     shippingPrice,
     totalPrice
   });
-
 
   const createdOrder = await order.save();
 
@@ -63,7 +52,7 @@ export const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate("user", "name email");
 
   if(!order) {
-    res.staus(404);
+    res.status(404);
     throw new Error("No order found");
   }
 
@@ -71,14 +60,14 @@ export const getOrderById = asyncHandler(async (req, res) => {
 });
 
 // @desc: Update order to paid
-// @route: GET /api/order/:id/pay
+// @route: PUT /api/order/:id/pay
 // @access: Private
 export const updateOrderToPaid = asyncHandler(async (req, res) => {
   res.send("update order to paid");
 });
 
 // @desc: Update to delivere
-// @route: GET /api/order/:id/deliver
+// @route: PUT /api/order/:id/deliver
 // @access: Private
 export const updateOrderToDelivered = asyncHandler(async (req, res) => {
   res.send("update order to delivered");
