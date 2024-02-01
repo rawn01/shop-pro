@@ -32,6 +32,7 @@ export const createOrder = asyncHandler(async (req, res) => {
 
   const order = new Order({
     orderItems: orderItems.map((item) => ({ ...item, product: item._id })),
+    user: req.user._id,
     shippingAddress,
     paymentMethod,
     itemsPrice,
@@ -43,7 +44,7 @@ export const createOrder = asyncHandler(async (req, res) => {
 
   const createdOrder = await order.save();
 
-  res.staus(201).json(createdOrder);
+  res.status(201).json(createdOrder);
 });
 
 // @desc: Get logged in user's order

@@ -44,7 +44,8 @@ const cartSlice = createSlice({
       // Tax Price (15% tax)
       state.taxPrice = addDecimals(Number(0.15 * +state.itemsPrice));
       // Total Price
-      state.totalPrice = Number(state.itemsPrice + state.shippingPrice + state.taxPrice).toFixed(2);
+      const totalPrice = +state.itemsPrice + +state.shippingPrice + +state.taxPrice;
+      state.totalPrice = Number(totalPrice).toFixed(2);
 
       localStorage.setItem("cart", JSON.stringify(state));
     },
@@ -65,7 +66,7 @@ const cartSlice = createSlice({
 
       localStorage.setItem("cart", JSON.stringify(state));
     },
-    clearCartItems: (state, action) => {
+    clearCartItems: (state) => {
       state.cartItems = [];
 
       localStorage.setItem("cart", JSON.stringify(state));
