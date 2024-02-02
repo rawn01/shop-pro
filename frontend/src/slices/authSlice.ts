@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IAuthState {
-  userInfo: { id: string, name: string, email: string } | null;
+  userInfo: { id: string, name: string, email: string, isAdmin?: boolean; } | null;
 }
 
 const initialState: IAuthState = {
